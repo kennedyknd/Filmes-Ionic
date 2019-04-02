@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+        </ion-buttons>
+    <ion-title>Filme</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+      <ion-img  src="https://image.tmdb.org/t/p/w500/{{filme.backdrop_path}}"></ion-img>
+      <ion-card-header>
+        <ion-card-subtitle></ion-card-subtitle>
+        <ion-card-title>{{filme.title}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+         <p><b>Descrição:</b> {{filme.overview}}</p>
+      </ion-card-content>
+      <ion-badge color="light">
+        <ion-icon *ngIf="filme.vote_average < 5" color="danger" name="thumbs-down"></ion-icon>
+        <ion-icon *ngIf="filme.vote_average >= 5" color="success" name="thumbs-up"></ion-icon>
+        {{filme.vote_average}}
+      </ion-badge>
+    </ion-card>
+    <p>Atores</p>
+    <ion-grid>
+      <ion-row>
+          <ion-col *ngFor="let ator of credits" size='3'>            
+            <ion-img [routerLink]="['/atores', ator.id]" src="https://image.tmdb.org/t/p/w500/{{ator.profile_path}}"></ion-img>
+          </ion-col>
+      </ion-row>
+  </ion-grid>
+</ion-content>
